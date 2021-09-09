@@ -1,36 +1,40 @@
-from fastapi import FastAPI
-from typing import Optional
-from pydantic import BaseModel
+from typing import List
 
-class Lesson(BaseModel):
-    id: int
-    name: str
-    description: Optional[str] = None
-    tier: str #Elementary, Middle, High
-    grade: int #K-12
-    created_by: str
-    created_on: str
-    
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+from starlette.responses import RedirectResponse
 
+from . import models, schemas
+from .database import SessionLocal, engine
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-@app.get("/lessons")
-async def get_lessons():
-        return {"Lessons" : "All"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
+)
 
-@app.get("/lessons/{lesson_id}")
-async def get_lesson_by_id(lesson_id: Lesson):
-        return {"Lesson" : lesson_id}
+# Dependency
+def get_db():
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
 
-@app.put("/lessons/{lesson_id}")
-async def put_lesson_by_id(lesson_id: Lesson):
-        return {"Lesson" : lesson_id}
 
-@app.post("/lessons/{lesson_id}")
-async def post_lesson_by_id(lesson_id: Lesson):
-        return {"Lesson" : lesson_id}
+@app.get("/")
+def main():
+    return RedirectResponse(url="/docs/")
 
-@app.delete("/lessons/{lesson_id}")
-async def delete_lesson_by_id(lesson_id: Lesson):
-        return {"Lesson" : lesson_id}
+
+@app.get("/lessons/", response_model=List[schemas.Lesson])
+def show_records(db: Session = Depends(get_db)):
+    records = db.query(models.Lesson).all()
+    return records

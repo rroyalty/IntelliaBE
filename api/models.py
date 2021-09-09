@@ -1,5 +1,3 @@
-
-from typing import Optional
 from sqlalchemy import Column, Integer, String, PickleType
 from sqlalchemy.types import Date
 
@@ -17,5 +15,6 @@ class Lesson(Base):
     tier = Column(String(10), nullible=False) #Elementary, Middle, High
     grade = Column(String(2), nullible=False) #K-12
     materials = Column(PickleType, Optional = True)
+    instructions = Column(PickleType)
     created_by = Column(String(30), nullible=False)
     created_on = Column(Date, nullible=False)
