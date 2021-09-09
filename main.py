@@ -1,14 +1,16 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
-from . import models, schemas
-from .database import SessionLocal, engine
+from api.models import Base, Lesson
+from api.schemas import Lesson
+from api.database import SessionLocal, engine
 
-models.Base.metadata.create_all(bind=engine)
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -34,7 +36,7 @@ def main():
     return RedirectResponse(url="/docs/")
 
 
-@app.get("/lessons/", response_model=List[schemas.Lesson])
+@app.get("/lessons/", response_model=List[Lesson])
 def show_records(db: Session = Depends(get_db)):
-    records = db.query(models.Lesson).all()
+    records = db.query(Lesson).all()
     return records
