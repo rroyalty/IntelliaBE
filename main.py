@@ -26,17 +26,17 @@ app.add_middleware(
 def get_db():
     try:
         db = SessionLocal()
+        print(db)
         yield db
     finally:
         db.close()
 
-
 @app.get("/")
-def main():
+async def main():
     return RedirectResponse(url="/docs/")
 
 
 @app.get("/lessons/", response_model=List[Lesson])
-def show_records(db: Session = Depends(get_db)):
+async def show_records(db: Session = Depends(get_db)):
     records = db.query(Lesson).all()
     return records
