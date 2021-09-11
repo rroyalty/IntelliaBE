@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, PickleType
 from sqlalchemy.types import Date
 
 
-from . import Base
+from ..database.database import Base
 
 class Lesson(Base):
     __tablename__ = "Lessons"

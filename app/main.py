@@ -5,9 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
-from api.models import Base, Lesson
-from api.schemas import Lesson
-from api.database import SessionLocal, engine
+from .models.lesson import Base, Lesson
+from .schemas.lesson import Lesson
+from .database.database import SessionLocal, engine
 
 
 Base.metadata.create_all(bind=engine)
