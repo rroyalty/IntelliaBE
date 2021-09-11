@@ -15,6 +15,7 @@ class Lesson(BaseModel):
     instructions: dict
     created_by: str
     created_on: date
+    url: HttpUrl
     
     class Config:
         orm_mode = True

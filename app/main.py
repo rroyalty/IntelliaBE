@@ -5,8 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
-from .models.lesson import Base, Lesson
-from .schemas.lesson import Lesson
+from .models.lesson import Base, Lesson as mLesson
+from .schemas.lesson import Lesson as sLesson
 from .database.database import SessionLocal, engine
 
 
@@ -24,9 +24,8 @@ app.add_middleware(
 
 # Dependency
 def get_db():
+    db = SessionLocal()
     try:
-        db = SessionLocal()
-        print(db)
         yield db
     finally:
         db.close()
@@ -36,7 +35,7 @@ async def main():
     return RedirectResponse(url="/docs/")
 
 
-@app.get("/lessons/", response_model=List[Lesson])
+@app.get("/lessons/", response_model=List[sLesson])
 async def show_records(db: Session = Depends(get_db)):
-    records = db.query(Lesson).all()
+    records = db.query(sLesson).all()
     return records
