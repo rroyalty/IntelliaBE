@@ -1,3 +1,3 @@
 
-from app.database. import Base  # noqa
-from app.models.lesson import Lesson  # noqa
+from app.models.lesson import Lesson
+from app.database.base_class import Base
