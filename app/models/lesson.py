@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, String, PickleType
 from sqlalchemy.types import Date
-
-
-from ..database.base import Base
+from ..database.session import Base
 
 class Lesson(Base):
     __tablename__ = "Lessons"
