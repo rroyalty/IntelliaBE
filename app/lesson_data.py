@@ -6,17 +6,19 @@ LESSONS = [
         "subject": "Photography",
         "name": "How to take a picture",
         "description": "Students will learn how to take a picture",
-        "tier": "High",
+        "tier": "High School",
         "grade": "9",
         "materials": ["Camera", "Film"],
         "instructions": [
             {
-                "Step": 1,
-                "Instruction": "Take camera"
+                "step": 1,
+                "instruction": "Take camera",
+                "time_est": 15
             },
             {
-                "Step": 2,
-                "Instruction": "Click Button"
+                "step": 2,
+                "instruction": "Click Button",
+                "time_est": 30
             }
         ],
         "created_by": "Ryan Royalty",
