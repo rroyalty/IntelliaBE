@@ -1,18 +1,20 @@
 from typing import List
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, APIRouter, Query, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
-from .models.lesson import Base, Lesson as mLesson
-from .schemas.lesson import Lesson as sLesson
-from .database.database import SessionLocal, engine
+from .database.base_class import Base
+from .schemas.lesson import Lesson
+from .database.session import SessionLocal, engine
 
+from app import crud
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+api_router = APIRouter()
 
 app.add_middleware(
     CORSMiddleware,
@@ -30,12 +32,20 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/")
-async def main():
-    return RedirectResponse(url="/docs/")
+@api_router.get("/lessons/", status_code=200)
+def lessons(
+    request: Request,
+    db: Session = Depends(get_db),
+) -> dict:
+    """
+    Root GET
+    """
+    lessons = crud.recipe.get_multi(db=db, limit=10)
+    return lessons
 
 
-@app.get("/lessons/", response_model=List[sLesson])
-async def show_records(db: Session = Depends(get_db)):
-    records = db.query(sLesson).all()
-    return records
+
+# @api_router.get("/lessons/", response_model=List[Lesson])
+# async def show_records(db: Session = Depends(get_db)):
+#     records = db.query(Lesson).all()
+#     return records
