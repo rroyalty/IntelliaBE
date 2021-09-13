@@ -34,6 +34,22 @@ def main():
     return RedirectResponse(url="/docs/")
 
 @app.get("/lessons/", response_model=List[lessonSchema])
-def show_records(db: Session = Depends(get_db)):
-    records = db.query(lessonModel).all()
-    return records
+async def get_all_lessons(db: Session = Depends(get_db)):
+    lessons = db.query(lessonModel).all()
+    return lessons
+
+@app.get("/lessons/{id}", response_model=List[lessonSchema])
+async def get_lesson_by_id(id: int, db: Session = Depends(get_db)):
+    lesson = db.query(lessonModel).filter(lessonModel.id == id).first()
+    return lesson
+
+@app.post("/lessons/", response_model=List[lessonSchema])
+async def post_lesson(postId: int, postDepartment: str, postCourse: str, db: Session = Depends(get_db)):
+    db.add(lessonModel(
+        id=postId,
+        department=postDepartment,
+        course=postCourse
+        )
+    )
+    db.commit()
+
