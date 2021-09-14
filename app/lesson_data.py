@@ -13,12 +13,12 @@ LESSONS = [
             {
                 "step": 1,
                 "instruction": "Take camera",
-                "time_est": 15
+                "timeEst": 15
             },
             {
                 "step": 2,
                 "instruction": "Click Button",
-                "time_est": 30
+                "timeEst": 30
             }
         ],
         "created_by": "Ryan Royalty",

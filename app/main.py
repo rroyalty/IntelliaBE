@@ -10,14 +10,11 @@ from .models.lesson import Lesson as lessonModel
 from .schemas.lesson import Lesson as lessonSchema
 from .models import lesson as pyLesson
 
-
-
 from .database.session import SessionLocal, engine
 from .database.dependency import get_db
 
 app = FastAPI()
 api_router = APIRouter()
-
 
 pyLesson.Base.metadata.create_all(bind=engine)
 
@@ -44,11 +41,20 @@ async def get_lesson_by_id(id: int, db: Session = Depends(get_db)):
     return lesson
 
 @app.post("/lessons/", response_model=List[lessonSchema])
-async def post_lesson(postId: int, postDepartment: str, postCourse: str, db: Session = Depends(get_db)):
+async def post_lesson(db_objid, db_objdepartment, db_objcourse, db_objsubject, db_objname, db_objdescription, db_objtier, db_objgrade, db_objmaterials, db_objinstructions, db_objcreated_by, db_objcreated_on, db: Session = Depends(get_db)):
     db.add(lessonModel(
-        id=postId,
-        department=postDepartment,
-        course=postCourse
+        id=db_objid,
+        department=db_objdepartment,
+        course=db_objcourse,
+        subject=db_objsubject,
+        name=db_objname,
+        description=db_objdescription,
+        tier=db_objtier,
+        grade=db_objgrade,
+        materials=db_objmaterials,
+        instructions=db_objinstructions,
+        created_by=db_objcreated_by,
+        # created_on=db_objcreated_on
         )
     )
     db.commit()
