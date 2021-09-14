@@ -1,7 +1,5 @@
-from pydantic import BaseModel, HttpUrl
-from typing import Optional, List
-from datetime import date
-
+from pydantic import BaseModel
+from typing import Optional
 
 class Lessons(BaseModel):
     id: int
@@ -13,7 +11,6 @@ class Lessons(BaseModel):
     tier: str #Elementary, Middle, High
     grade: int #K-12
     created_by: str
-    # created_on: date
     # url: HttpUrl
 
     class Config:

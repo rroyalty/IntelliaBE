@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, PickleType
-from sqlalchemy.types import Date
+from sqlalchemy import Column, Integer, String
 from ..database.session import Base
 
 class Instructions(Base):

@@ -51,8 +51,6 @@ async def post_lesson(db_objid, db_objdepartment, db_objcourse, db_objsubject, d
         description=db_objdescription,
         tier=db_objtier,
         grade=db_objgrade,
-        materials=db_objmaterials,
-        instructions=db_objinstructions,
         created_by=db_objcreated_by,
         # created_on=db_objcreated_on
         )

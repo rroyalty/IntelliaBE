@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, PickleType
+from sqlalchemy import Column, Integer, String
 from ..database.session import Base
 
 class Lessons(Base):
