@@ -48,9 +48,6 @@ def update_lesson(id: int, obj_in: schema, session: Session = Depends(get_sessio
     lesson = crud.update_lesson(session=session, obj_in=obj_in, id=id)
     return lesson
 
-@router.delete("/lessons/{id}", response_model=schema)
+@router.delete("/lessondelete/{id}", response_model=schema)
 def delete_lesson(id: int, session: Session = Depends(get_session)):
-    lesson = crud.delete_lesson(session=session, id=id)
-    if lesson is None:
-        raise HTTPException(status_code=404, detail="lesson not found")
-    return lesson
+    crud.delete_lesson(session=session, id=id)
