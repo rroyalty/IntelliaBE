@@ -45,5 +45,4 @@ def show_lesson(request: Request, id_param: int):
 #Route for deleteing a lesson plan.
 @app.get('/new')
 def show_lesson(request: Request, id_param: int):
-    requests.delete(request.url_for('delete_lesson', id=id_param))
-    return RedirectResponse(url="/list")
+    return templates.TemplateResponse("new.html", {"request": request})

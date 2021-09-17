@@ -12,7 +12,7 @@ class Instruction(BaseModel):
     class Config:
         orm_mode = True
 
-class Lessons(BaseModel):
+class LessonsPost(BaseModel):
     department: str
     course: str
     subject: str
@@ -21,6 +21,23 @@ class Lessons(BaseModel):
     materials: Optional[List[str]] = None
     tier: str #Elementary, Middle, High
     grade: int #K-12
+
+    class Config:
+        orm_mode = True
+
+class LessonsReturn(BaseModel):
+    id: int
+    department: str
+    course: str
+    subject: str
+    name: str
+    description: Optional[str] = None
+    materials: Optional[List[str]] = None
+    tier: str #Elementary, Middle, High
+    grade: int #K-12
+    instructions: List[Instruction]
+    created_by: str
+    created_on: date
 
     class Config:
         orm_mode = True
