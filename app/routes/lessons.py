@@ -50,4 +50,4 @@ def update_lesson(id: int, obj_in: schema, session: Session = Depends(get_sessio
 
 @router.delete("/lessondelete/{id}", response_model=schema)
 def delete_lesson(id: int, session: Session = Depends(get_session)):
-    crud.delete_lesson(session=session, id=id)
+    lesson = crud.remove_lesson(session=session, id=id)

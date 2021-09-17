@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body,
+        div {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        span {
+            margin: 10px
+        }
+
+        h1,
+        h3,
+        h4,
+        h5 {
+            margin: 5px
+        }
+
+        h4 {
+            font-weight: normal;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><strong>{{data.name}}</strong></h1>
+        <h3>for Grade {{data.grade}}, {{data.course}}, {{data.department}} department.</h3>
+        <p><span>By: {{data.created_by}}</span><span>Created on: {{data.created_on}}</span></p>
+    </header>
+    <div>
+        <h4>{{data.description}}</h4>
+        <h5>Materials Needed:
+            {% for item in data.materials %}
+            {{item}},
+            {% endfor %}</h5>
+    </div>
+    <div>
+        <h3>Instructions:</h3>
+        {% for item in data.instructions %}
+        <p>Step {{item.step}}: Estimated Time: {{item.timeEst}} minutes</p>,
+        <p>{{item.instruction}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -22,6 +22,7 @@ tr:nth-child(even) {
 <body>
 
 <h2>Lesson Plans</h2>
+<a href="/new"><button>New</button></a>
 
 <table>
   <tr>
@@ -32,9 +33,12 @@ tr:nth-child(even) {
     <th>Tier</th>
     <th>Grade</th>
     <th>Description</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   {% for item in data %}
-  <tr>
+  <tr id={{item.id}}>
     <td>{{item.department}}</td>
     <td>{{item.subject}}</td>
     <td>{{item.course}}</td>
@@ -42,6 +46,9 @@ tr:nth-child(even) {
     <td>{{item.tier}}</td>
     <td>{{item.grade}}</td>
     <td>{{item.description}}</td>
+    <td><a href="{{ '/view/%s'%item.id|urlencode }}"><button>View</button></a></td>
+    <td><a href="{{ '/edit/%s'%item.id|urlencode }}"><button>Edit</button></a></td>
+    <td><a href="{{ '/delete/%s'%item.id|urlencode }}"><button>Delete</button></a></td>
   </tr>
   {% endfor %}
 </table>

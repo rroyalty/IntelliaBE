@@ -40,6 +40,6 @@ def update_lesson(id: int, obj_in: UpdateSchemaType, session: Session) -> ModelT
     session.refresh(obj_db)
     return obj_db
 
-def delete_lesson(id: int, session: Session) -> ModelType:
+def remove_lesson(id: int, session: Session) -> ModelType:
     session.query(Lessons).filter(Lessons.id==id).delete()
-    session.commit
+    session.commit()
