@@ -1,3 +1,4 @@
+import datetime
 from pydantic import BaseModel
 from typing import Optional, List, Dict
 
@@ -17,10 +18,12 @@ class Lessons(BaseModel):
     subject: str
     name: str
     description: Optional[str] = None
+    materials: Optional[List[str]] = None
     tier: str #Elementary, Middle, High
     grade: int #K-12
     instructions: List[Instruction]
     created_by: str
+    created_on: datetime.date
     # url: HttpUrl
 
     class Config:

@@ -8,7 +8,8 @@ LESSONS = [
         "description": "Students will learn how to take a picture",
         "tier": "High School",
         "grade": "9",
-        "instructions": {[
+        "materials": ["camera", "film"],
+        "instructions": [
             {
                 "id": 1,
                 "step": 1,
@@ -21,7 +22,8 @@ LESSONS = [
                 "instruction": "Click Button",
                 "timeEst": 30
             }
-        ]},
-        "created_by": "Ryan Royalty"
+        ],
+        "created_by": "Ryan Royalty",
+        "created_on": 1394004146
     }
 ]
