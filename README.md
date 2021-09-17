@@ -1,4 +1,4 @@
-# Commerce Back End
+# Intellia Interview Project
 
 ## Table of Contents  
 
