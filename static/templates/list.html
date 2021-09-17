@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Lesson Plans</h2>
+
+<table>
+  <tr>
+    <th>Department</th>
+    <th>Subject</th>
+    <th>Course</th>
+    <th>Name</th>
+    <th>Tier</th>
+    <th>Grade</th>
+    <th>Description</th>
+  </tr>
+  {% for item in data %}
+  <tr>
+    <td>{{item.department}}</td>
+    <td>{{item.subject}}</td>
+    <td>{{item.course}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.tier}}</td>
+    <td>{{item.grade}}</td>
+    <td>{{item.description}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
