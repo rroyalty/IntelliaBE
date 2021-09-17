@@ -10,6 +10,9 @@ os.environ["POSTGRES_USER"] = "ahpxpxlvkbdeoa"
 os.environ["POSTGRES_PASS"] = "aa545069c2e4376f0aa11f9bdb88b51b9c3ee4419ad27e9ffba2c2639ad8453c"
 os.environ["POSTGRES_PORT"] = "5432"
 
+# Hard set of the USER temporarily, simply for testing purposes.
+os.environ["USER"] = "Ryan Royalty"
+
 host = os.environ["POSTGRES_HOST"]
 port = os.environ["POSTGRES_PORT"]
 user = os.environ["POSTGRES_USER"]

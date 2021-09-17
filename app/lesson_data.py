@@ -1,6 +1,5 @@
 LESSONS = [
     {   
-        "id": 1,
         "department": "Art",
         "course": "Photo 1",
         "subject": "Photography",
@@ -22,8 +21,6 @@ LESSONS = [
                 "instruction": "Click Button",
                 "timeEst": 30
             }
-        ],
-        "created_by": "Ryan Royalty",
-        "created_on": 1394004146
+        ]
     }
 ]

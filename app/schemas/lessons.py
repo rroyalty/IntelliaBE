@@ -1,6 +1,7 @@
-import datetime
+from datetime import date
 from pydantic import BaseModel
 from typing import Optional, List, Dict
+import os
 
 class Instruction(BaseModel):
     id: int
@@ -12,7 +13,6 @@ class Instruction(BaseModel):
         orm_mode = True
 
 class Lessons(BaseModel):
-    id: int
     department: str
     course: str
     subject: str
@@ -21,10 +21,6 @@ class Lessons(BaseModel):
     materials: Optional[List[str]] = None
     tier: str #Elementary, Middle, High
     grade: int #K-12
-    instructions: List[Instruction]
-    created_by: str
-    created_on: datetime.date
-    # url: HttpUrl
 
     class Config:
         orm_mode = True
