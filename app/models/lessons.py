@@ -21,8 +21,3 @@ class Lessons(Base):
     grade = Column(String(2), nullable=False) #K-12
     created_by = Column(String(30), default=os.environ["USER"])
     created_on = Column(Date, default=date.today())
-
-    # def __init__(self, created_on, created_by, id) -> None:
-    #     self.created_on = created_on
-    #     self.created_by = created_by
-    #     self.id = id

@@ -1,18 +1,108 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <style>
+        body,
+        div {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        section {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            display: flex;
+            flex-direction: column;
+            width: 100%
+        }
+
+        span {
+            margin: 10px
+        }
+
+        h1,
+        h3,
+        h4,
+        h5,
+        p {
+            margin: 5px
+        }
+
+        h4 {
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        form {
+            width: 50vw
+        }
+
+        label {
+            width: 200px
+        }
+    </style>
+</head>
+
 <body>
 
-<h2>HTML Forms</h2>
+    <h2>New Lesson</h2>
 
-<form action="/action_page.php">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe"><br><br>
-  <input type="submit" value="Submit">
-</form> 
+    <form action="/new/post" method = "POST">
+        <label for="name">What is the name of your lesson?</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="dep">Department:</label><br>
+        <input type="text" id="dep" name="dep"><br><br>
+
+        <label for="tier">Tier:</label><br>
+        <input type="text" id="tier" name="tier"><br><br>
+
+        <label for="grade">Grade:</label><br>
+        <input type="text" id="grade" name="grade"><br><br>
+
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject"><br><br>
+
+        <label for="course">Course:</label><br>
+        <input type="text" id="course" name="course"><br><br>
+
+        <label for="course">Description:</label><br>
+        <input type="text" id="description" name="description"><br><br>
+
+        <section>
+            {% for item in matList %}
+            <label for="{{item.material}}">{{item.material}}</label>
+            <input type="checkbox" id="{{item.material}}" name="{{item.material}}">
+            {% endfor %}
+        </section>
+
+        <section>
+            {% for x in range(1, 5) %}
+            <label for="insNum{{x}}">Step:</label>
+            <input type="number" id="insNum{{x}}}" name="insNum{{x}}" value={{x}}>
+            <label for="estTime{{x}}">Estimated Time:</label>
+            <input type="number" id="estTime{{x}}}" name="estTime{{x}}">
+            <label for="ins{{x}}">Instruction:</label>
+            <input type="text" id="ins{{x}}}" name="ins{{x}}">
+            {% endfor %}
+        </section>
+
+
+        <input type="submit" value="Submit">
+    </form>
 
 
 </body>
-</html>
 
+</html>

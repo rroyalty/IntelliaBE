@@ -7,7 +7,7 @@
 [Usage](#Usage)  
 [License](#License)  
 [Contributing](#Contributing)  
-[Future Dev](#FutureDev)
+[Future Dev](#FutureDev)  
 [Tests](#Tests)  
 [Questions](#Questions)  
 
@@ -72,8 +72,8 @@ Technologies Used:
 2.  The front end via templating using Jinja is basically a cut and paste of HTML code from w3schools. Cleaning up the front end and making it look nice is on the agenda, but for my MVP the templates will do.  
 3.  Error catching and testing.  
 4.  Model migrations using Alembic.  
-5.  TBD
-
+5.  TBD  
+  
 ---
 <a name="Tests"></a>
 ### Tests

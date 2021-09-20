@@ -1,8 +1,8 @@
 import os
 
-from sqlalchemy import create_engine  # type: ignore
-from sqlalchemy.ext.declarative import declarative_base  # type: ignore
-from sqlalchemy.orm import sessionmaker  # type: ignore
+from sqlalchemy import create_engine 
+from sqlalchemy.ext.declarative import declarative_base 
+from sqlalchemy.orm import sessionmaker 
 
 os.environ["POSTGRES_HOST"] = "ec2-44-198-223-154.compute-1.amazonaws.com"
 os.environ["POSTGRES_DB"] = "d5rj3ncvb47hfb"

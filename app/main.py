@@ -1,11 +1,16 @@
-from fastapi import FastAPI, Request
+from typing import TypeVar
+from fastapi import FastAPI, Request, Form
 from starlette.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from .routes.lessons import *
 from fastapi.middleware.cors import CORSMiddleware
 import requests
+import json
 
+materialImport = open('static/json/materials.json')
+materials = json.load(materialImport)
+matList = materials['materials']
 
 app = FastAPI()
 
@@ -38,11 +43,17 @@ def show_lesson(request: Request, id_param: int):
 
 #Route for deleteing a lesson plan.
 @app.get('/delete/{id_param}')
-def show_lesson(request: Request, id_param: int):
+def remove_lesson(request: Request, id_param: int):
     requests.delete(request.url_for('delete_lesson', id=id_param))
     return RedirectResponse(url="/list")
 
 #Route for deleteing a lesson plan.
 @app.get('/new')
-def show_lesson(request: Request, id_param: int):
-    return templates.TemplateResponse("new.html", {"request": request})
+def new_lesson(request: Request):
+    return templates.TemplateResponse("new.html", {"request": request, "matList": matList})
+
+#Route for deleteing a lesson plan.
+@app.post('/new/post')
+async def post_new_lesson(request: Request):
+    form_data = await request.form()
+    print(form_data)

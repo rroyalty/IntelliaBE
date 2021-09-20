@@ -1,0 +1,15 @@
+
+{
+    "tiers": [
+        {
+            "tier": "Elementary School"
+        },
+        {
+            "tier": "Middle School"
+        },
+        {
+            "tier": "High School"
+        }
+    ]
+
+}
